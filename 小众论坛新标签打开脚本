@@ -1,0 +1,21 @@
+// ==UserScript==
+// @name         Open Discourse Links in New Window
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Open Discourse topic links in a new window
+// @author       anonymous
+// @match        https://meta.appinn.com/*
+// @grant        none
+// ==/UserScript==
+
+function openInNewWindow(e) {
+    const link = e.target.closest('a[href^="/t/topic/"]');
+    if (link) {
+        e.preventDefault();
+        window.open(link.href, '_blank');
+    }
+}
+
+document.addEventListener('click', openInNewWindow, {
+  capture: true,
+});​
